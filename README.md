@@ -35,15 +35,15 @@
 
 1.   Install dependencies:
 
-pip install -r requirements.txt
+     pip install -r requirements.txt
 
 2.  Configure Environment Variables:
 
-Create a .env file in the root directory and add your secret API keys:
-Code snippet
+     Create a .env file in the root directory and add your secret API keys:
+     Code snippet
 
-GEMINI_API_KEY=your_gemini_api_key_here
-ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
+     GEMINI_API_KEY=your_gemini_api_key_here
+     ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
 
-Run the Application:
-python app.py
+3.   Run the Application:
+     python app.py
