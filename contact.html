@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Target Achiever</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="back-link">
+            <span class="arrow">←</span> Back to Home
+        </a>
+        <div class="logo">TARGET ACHIEVER</div>
+        <div class="nav-spacer"></div> <!-- Balance grid alignment -->
+    </header>
+
+    <main class="contact-container">
+        <section class="contact-header">
+            <h1>GET IN TOUCH</h1>
+            <p class="subtitle">Have a query, feedback, or need support? We are here to help you conquer your goals.</p>
+        </section>
+
+        <div class="contact-grid">
+            <!-- Left Column: Direct Info Card -->
+            <div class="contact-info-card">
+                <h2>Direct Contact</h2>
+                <p>Feel free to reach out directly via email for support, collaboration, or general inquiries.</p>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="info-details">
+                        <span class="info-label">Official Gmail</span>
+                        <a href="mailto:anshuman28092007@gmail.com" class="info-value">anshuman28092007@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="info-details">
+                        <span class="info-label">Response Time</span>
+                        <span class="info-value">Within 24 Hours</span>
+                    </div>
+                </div>
+
+                <hr class="card-divider">
+
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-mini">
+                    <details>
+                        <summary>Is Target Achiever free to use?</summary>
+                        <p>Yes! Generating study plans and action roadmaps is completely free.</p>
+                    </details>
+                    <details>
+                        <summary>How does AI breakdown work?</summary>
+                        <p>Our AI analyzes your syllabus target and remaining deadline days to build an optimized daily
+                            study schedule.</p>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Right Column: Query Form -->
+            <div class="contact-form-card">
+                <h2>Send a Message / Query</h2>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullName">Your Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailAddr">Your Email Address</label>
+                        <input type="email" id="emailAddr" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="queryType">Query Category</label>
+                        <select id="queryType" required>
+                            <option value="" disabled selected>Select category...</option>
+                            <option value="general">General Query</option>
+                            <option value="bug">Report an Issue / Bug</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message / Query Details</label>
+                        <textarea id="message" rows="5" placeholder="Describe your query or feedback in detail..."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    <div id="formStatus" class="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Target Achiever • Built for relentless focus.</p>
+    </footer>
+
+    <script>
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const statusElem = document.getElementById('formStatus');
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('emailAddr').value;
+            const category = document.getElementById('queryType').value;
+            const message = document.getElementById('message').value;
+
+            // Open user's default email client pre-filled with their query
+            const subject = encodeURIComponent(`[Target Achiever ${category.toUpperCase()}] Inquiry from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCategory: ${category}\n\nMessage:\n${message}`);
+
+            window.location.href = `mailto:anshumansingh0282007@gmail.com?subject=${subject}&body=${body}`;
+
+            statusElem.innerText = "Opening your email app to send the message...";
+            statusElem.style.color = "#e0be75";
+        }
+    </script>
+</body>
+
+</html>

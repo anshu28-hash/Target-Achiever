@@ -1,0 +1,544 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #080a0c;
+    --card-bg: rgba(18, 22, 29, 0.72);
+    --gold-primary: #e0be75;
+    --gold-light: #fdf1d6;
+    --gold-dark: #b8954d;
+    --text-main: #f0f2f5;
+    --text-muted: #9aa0a6;
+    --border-gold: rgba(224, 190, 117, 0.3);
+    --border-glow: rgba(224, 190, 117, 0.6);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ADVANCED ANIMATED BACKGROUND (Mesh Gradient + Floating Orbs + Particles)
+   ========================================================================== */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Dynamic Mesh Wave */
+.mesh-gradient {
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    top: -20%;
+    left: -20%;
+    background: radial-gradient(circle at 50% 50%, rgba(224, 190, 117, 0.08), transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(15, 20, 28, 0.9), transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(40, 32, 18, 0.4), transparent 50%);
+    animation: rotateMesh 25s infinite linear;
+}
+
+@keyframes rotateMesh {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* Floating Light Orbs */
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+}
+
+.orb-center {
+    width: 500px;
+    height: 500px;
+    background: var(--gold-primary);
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseOrb 8s infinite alternate ease-in-out;
+}
+
+.orb-left {
+    width: 400px;
+    height: 400px;
+    background: #6e501a;
+    bottom: -50px;
+    left: -50px;
+}
+
+.orb-right {
+    width: 450px;
+    height: 450px;
+    background: #2a2010;
+    top: -50px;
+    right: -50px;
+}
+
+@keyframes pulseOrb {
+    0% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.38;
+    }
+}
+
+/* Floating Upward Gold Star Particles */
+.particles {
+    position: relative;
+    display: flex;
+    z-index: 1;
+}
+
+.particles span {
+    position: absolute;
+    bottom: -100px;
+    background: var(--gold-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--gold-primary);
+    animation: animateParticles 15s linear infinite;
+    animation-duration: calc(180s / var(--i));
+    width: calc(var(--i) * 0.15px + 2px);
+    height: calc(var(--i) * 0.15px + 2px);
+    left: calc(var(--i) * 4vw);
+    opacity: 0.6;
+}
+
+@keyframes animateParticles {
+    0% {
+        transform: translateY(105vh) scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   HEADER & LAYOUT
+   ========================================================================== */
+.header {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.back-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--gold-primary);
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.planner-container {
+    max-width: 680px;
+    width: 100%;
+    margin: 1rem auto 4rem;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.title-group {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(180deg, #ffffff 30%, var(--gold-light) 70%, var(--gold-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-primary);
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   GLASSMORPHISM CARD & FORM ELEMENTS
+   ========================================================================== */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(224, 190, 117, 0.08) inset;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    animation: cardFloatIn 1s ease-out;
+}
+
+@keyframes cardFloatIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.glass-card:hover {
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(224, 190, 117, 0.18);
+    border-color: rgba(224, 190, 117, 0.5);
+}
+
+.form-step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.2rem;
+}
+
+.step-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold-primary);
+    line-height: 1;
+    opacity: 0.9;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.6rem;
+}
+
+.label-hint {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Inputs & Textarea Styling */
+.custom-textarea,
+.custom-date-input {
+    width: 100%;
+    background: rgba(10, 13, 18, 0.75);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.custom-textarea::placeholder {
+    color: #555c68;
+}
+
+.custom-textarea:focus,
+.custom-date-input:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 20px rgba(224, 190, 117, 0.25);
+    background: rgba(12, 16, 22, 0.9);
+}
+
+
+/* Custom Calendar Input Styling */
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.custom-date-input {
+    width: 100%;
+    background: rgba(10, 13, 18, 0.75);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    /* 🌟 Changes calendar selection highlight to GOLD */
+    accent-color: var(--gold-primary);
+    color-scheme: dark;
+}
+
+.custom-date-input:focus {
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 20px rgba(224, 190, 117, 0.25);
+    background: rgba(12, 16, 22, 0.9);
+}
+
+/* 🌟 Make native Calendar Icon bigger & give it a Gold tint */
+.custom-date-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    transform: scale(1.4);
+    /* Makes icon significantly bigger */
+    filter: invert(0.8) sepia(0.8) saturate(3) hue-rotate(5deg) brightness(1.1);
+    /* Gold tint filter */
+    margin-right: 0.4rem;
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-date-input::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.6);
+    opacity: 1;
+}
+
+/* Submit Section */
+.submit-wrapper {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn-generate {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    border: none;
+    border-radius: 10px;
+    padding: 1.2rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #0d0f12;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(224, 190, 117, 0.25);
+}
+
+.btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(224, 190, 117, 0.45);
+    background: linear-gradient(135deg, #ffffff, var(--gold-light));
+}
+
+.submit-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Layout */
+@media (max-width: 640px) {
+    .page-title {
+        font-size: 2.2rem;
+    }
+
+    .glass-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-step {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .header {
+        padding: 1.5rem;
+    }
+}
+
+/* ==========================================
+   AESTHETIC ANALOG CLOCK STYLES
+   ========================================== */
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.analog-clock {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(145deg, #1e1e24, #121216);
+    border: 2px solid rgba(224, 190, 117, 0.4);
+    box-shadow: 0 0 25px rgba(224, 190, 117, 0.15), inset 0 0 15px rgba(0, 0, 0, 0.8);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Clock Hands */
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    transition: transform 0.05s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+.hour-hand {
+    width: 4px;
+    height: 32px;
+    background: #e0be75;
+    margin-left: -2px;
+    z-index: 3;
+}
+
+.minute-hand {
+    width: 3px;
+    height: 48px;
+    background: #fdfbf7;
+    margin-left: -1.5px;
+    z-index: 2;
+}
+
+.second-hand {
+    width: 1.5px;
+    height: 54px;
+    background: #ff6b6b; /* Sleek accent red */
+    margin-left: -0.75px;
+    z-index: 4;
+}
+
+.center-dot {
+    width: 8px;
+    height: 8px;
+    background: #e0be75;
+    border: 2px solid #121216;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    box-shadow: 0 0 5px rgba(224, 190, 117, 0.8);
+}
+
+/* Dial Marks */
+.mark {
+    position: absolute;
+    background: rgba(224, 190, 117, 0.5);
+}
+
+.mark.m-12, .mark.m-6 {
+    width: 2px;
+    height: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.mark.m-12 { top: 6px; }
+.mark.m-6 { bottom: 6px; }
+
+.mark.m-3, .mark.m-9 {
+    width: 8px;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.mark.m-3 { right: 6px; }
+.mark.m-9 { left: 6px; }
+
+/* Quote Styling */
+.clock-quote {
+    font-size: 0.88rem;
+    font-style: italic;
+    color: #c5a880;
+    letter-spacing: 0.5px;
+    text-align: center;
+    max-width: 420px;
+    margin: 0;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Cinzel', serif, Georgia; /* Fallback luxury serif font */
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border-top: 1px solid rgba(224, 190, 117, 0.08);
+    margin-top: 4rem;
+}

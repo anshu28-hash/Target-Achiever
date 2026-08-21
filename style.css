@@ -1,0 +1,395 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0b0d10;
+    --card-bg: rgba(20, 24, 31, 0.65);
+    --gold-primary: #e0be75;
+    --gold-light: #f7e7c4;
+    --text-main: #f0f2f5;
+    --text-muted: #9aa0a6;
+    --border-gold: rgba(224, 190, 117, 0.22);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 5rem;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ANIMATED BACKGROUND SYSTEM
+   ========================================================================== */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.25;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--gold-primary) 0%, rgba(0,0,0,0) 70%);
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: floatOrb1 12s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #a1782f 0%, rgba(0,0,0,0) 70%);
+    bottom: -100px;
+    left: -100px;
+    animation: floatOrb2 16s infinite alternate ease-in-out;
+}
+
+.orb-3 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, #4a3c1c 0%, rgba(0,0,0,0) 70%);
+    top: 40%;
+    right: -100px;
+    animation: floatOrb3 14s infinite alternate ease-in-out;
+}
+
+@keyframes floatOrb1 {
+    0% { transform: translate(-50%, 0) scale(1); opacity: 0.2; }
+    50% { transform: translate(-45%, 50px) scale(1.15); opacity: 0.32; }
+    100% { transform: translate(-55%, -30px) scale(0.95); opacity: 0.22; }
+}
+
+@keyframes floatOrb2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(120px, -80px) scale(1.2); }
+}
+
+@keyframes floatOrb3 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-100px, 60px) scale(1.1); }
+}
+
+/* ==========================================================================
+   LAYOUT & CONTENT STYLING
+   ========================================================================== */
+
+.header {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 3rem 0 4rem;
+}
+
+.hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    background: linear-gradient(180deg, #ffffff 20%, var(--gold-light) 70%, var(--gold-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--gold-primary);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+}
+
+.hero-description strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* CTA Button */
+.cta-wrapper {
+    margin-top: 1.5rem;
+}
+
+.btn-primary {
+    position: relative;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    border: none;
+    border-radius: 8px;
+    padding: 1.2rem 3rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #0d0f12;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 0 25px rgba(224, 190, 117, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 40px rgba(224, 190, 117, 0.5);
+    background: linear-gradient(135deg, #ffffff, var(--gold-light));
+}
+
+/* Sections */
+.section {
+    margin-top: 4.5rem;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   POP-UP HOVER ANIMATIONS FOR CARDS / BOXES
+   ========================================================================== */
+
+.workflow-container, 
+.table-wrapper {
+    background: var(--card-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    
+    /* Smooth Pop-Up Transition */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 0.4s ease;
+    will-change: transform, box-shadow;
+    cursor: pointer;
+}
+
+/* Pop-Up, Golden Glow, and Deep Shadow Effect on Hover */
+.workflow-container:hover, 
+.table-wrapper:hover {
+    transform: translateY(-10px) scale(1.015);
+    border-color: rgba(224, 190, 117, 0.6);
+    box-shadow: 
+        0 25px 50px -10px rgba(0, 0, 0, 0.85),       /* Deep background shadow */
+        0 0 40px rgba(224, 190, 117, 0.25),          /* Outer golden glow */
+        0 0 15px rgba(224, 190, 117, 0.1) inset;      /* Inner ambient highlight */
+}
+
+
+/* ==========================================
+   FLOATING CONTACT ICON (BOTTOM RIGHT)
+   ========================================== */
+.floating-contact-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: radial-gradient(145deg, #1e1e24, #121216);
+    border: 1.5px solid rgba(224, 190, 117, 0.5);
+    border-radius: 50%;
+    color: #e0be75;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(224, 190, 117, 0.15);
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-contact-btn svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover & Focus Effects */
+.floating-contact-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: radial-gradient(145deg, #282830, #16161c);
+    border-color: #e0be75;
+    color: #fdfbf7;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 22px rgba(224, 190, 117, 0.4);
+}
+
+.floating-contact-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.floating-contact-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* How It Works Layout */
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2.5rem 2rem;
+}
+
+.workflow-card {
+    flex: 1;
+    text-align: center;
+}
+
+.step-num {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--gold-primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.workflow-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+}
+
+.workflow-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.workflow-arrow {
+    color: var(--gold-primary);
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+/* Key Features Table Layout */
+.table-wrapper {
+    overflow: hidden;
+}
+
+.features-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.features-table th, 
+.features-table td {
+    padding: 1.2rem 1.8rem;
+}
+
+.features-table th {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-gold);
+}
+
+.features-table tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-name {
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 1rem;
+    width: 25%;
+}
+
+.features-table td {
+    font-size: 0.95rem;
+    color: #d1d5db;
+    line-height: 1.5;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.6rem;
+    }
+    .workflow-container {
+        flex-direction: column;
+        gap: 1.8rem;
+    }
+    .workflow-arrow {
+        transform: rotate(90deg);
+    }
+    .features-table th, .features-table td {
+        padding: 1rem;
+    }
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border-top: 1px solid rgba(224, 190, 117, 0.08);
+    margin-top: 4rem;
+}
+
+tr:hover {
+    background-color: rgb(53, 51, 51);
+
+}

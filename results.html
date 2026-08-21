@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Achiever - AI Roadmap</title>
+    <link rel="stylesheet" href="results-style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Loading State Styling */
+        .loading-box {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            border-radius: 18px;
+            backdrop-filter: blur(16px);
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(224, 190, 117, 0.2);
+            border-top-color: var(--gold-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="mesh-gradient"></div>
+        <div class="glow-orb orb-top"></div>
+        <div class="glow-orb orb-bottom"></div>
+    </div>
+
+    <header class="header">
+        <a href="planner.html" class="back-link">← Modify Target</a>
+        <div class="logo">TARGET ACHIEVER</div>
+        <button class="btn-outline" onclick="window.print()">Export PDF</button>
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- Dynamic Summary Banner -->
+        <section class="summary-card">
+            <div class="summary-main">
+                <div class="target-info">
+                    <span class="badge">ACTIVE AI ROADMAP</span>
+                    <h1 class="target-title" id="displayTitle">Analyzing Target...</h1>
+                    <p class="target-meta">Deadline: <strong id="displayDeadline">--</strong> • Total Duration: <strong id="displayDuration">-- Days</strong></p>
+                </div>
+                <div class="progress-box">
+                    <div class="progress-percentage" id="displayPercentage">0%</div>
+                    <span class="progress-label">Completed</span>
+                </div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+            </div>
+        </section>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2 class="section-title">Day-Wise Action Plan</h2>
+        </div>
+
+        <!-- Timeline Grid / AI Loading Area -->
+        <div class="timeline-grid" id="timelineGrid">
+            <div class="loading-box" id="loadingState">
+                <div class="spinner"></div>
+                <h3 style="color: var(--gold-light); font-size: 1.2rem; margin-bottom: 0.5rem;">Generating Your AI Roadmap...</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Breaking down your goal into day-by-day actionable topics.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

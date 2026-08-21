@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Achiever - Set Your Path</title>
+    <link rel="stylesheet" href="planner-style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Dynamic Animated Mesh & Ambient Lighting -->
+    <div class="bg-animation">
+        <div class="mesh-gradient"></div>
+        <div class="glow-orb orb-center"></div>
+        <div class="glow-orb orb-left"></div>
+        <div class="glow-orb orb-right"></div>
+
+        <!-- Animated Floating Particles -->
+        <div class="particles">
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+            <span style="--i:16;"></span>
+            <span style="--i:19;"></span>
+            <span style="--i:20;"></span>
+        </div>
+    </div>
+
+    <!-- Top Navigation Header -->
+    <header class="header">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="logo">TARGET ACHIEVER</div>
+    </header>
+
+    <!-- Main Form Section -->
+    <main class="planner-container">
+        <div class="title-group">
+            <!-- Aesthetic Analog Clock Section -->
+            <div class="clock-container">
+                <div class="analog-clock">
+                    <div class="clock-face">
+                        <div class="hand hour-hand" id="hourHand"></div>
+                        <div class="hand minute-hand" id="minuteHand"></div>
+                        <div class="hand second-hand" id="secondHand"></div>
+                        <div class="center-dot"></div>
+
+                        <!-- Dial Marks -->
+                        <span class="mark m-12"></span>
+                        <span class="mark m-3"></span>
+                        <span class="mark m-6"></span>
+                        <span class="mark m-9"></span>
+                    </div>
+                </div>
+                <p class="clock-quote">
+                    "Time is the only currency you can never earn back, so spend it wisely."
+                </p>
+            </div>
+            <h1 class="page-title">SET YOUR PATH</h1>
+            <p class="page-subtitle">Break down your goal. Achieve your target.</p>
+        </div>
+
+        <!-- Glassmorphism Interactive Form Card -->
+        <div class="glass-card">
+            <form id="targetForm" onsubmit="event.preventDefault();">
+
+                <!-- Step 01: Goal Input -->
+                <div class="form-step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <label for="targetDetails" class="step-label">
+                            Enter Project or Target Details <span class="label-hint">(e.g., 12th Full Syllabus, Project
+                                Launch)</span>
+                        </label>
+                        <textarea id="targetDetails" class="custom-textarea" rows="3"
+                            placeholder="Describe your target or syllabus here..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 02: Deadline Selection -->
+                <div class="form-step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <label for="targetDeadline" class="step-label">Select Target Deadline</label>
+                        <div class="date-input-wrapper">
+                            <input type="date" id="targetDeadline" class="custom-date-input" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Section -->
+                <div class="submit-wrapper">
+                    <button type="submit" class="btn-generate">GENERATE NOW</button>
+                    <p class="submit-caption">Analyze & Create Day-Wise Breakdown</p>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Target Achiever • Built for relentless focus.</p>
+    </footer>
+
+
+
+    <script src="planner.js"></script>
+
+</body>
+
+</html>
